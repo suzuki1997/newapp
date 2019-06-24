@@ -1,5 +1,22 @@
 div.container
-  div.jumbotron.bg-success
-    h2.mb-3 ユーザー登録
+  h2.mb-3.text-warning ユーザー登録
   
+  div.row.mb-4
+    div.col-md-6
+      = form_for(@user) do |u|
+        == render "shared/error_messages"
+        div.form-group.mb-3
+          = u.label :name, "名前"
+          = u.text_field :name,class: "form-control"
+        
+          = u.label :email,"Eメール"
+          = u.email_field :email,class: "form-control"
+
+          = u.label :password,"パスワード"
+          = u.password_field :password,class: "form-control"
+
+          = u.label :password_confirmation, "パスワード確認"
+          = u.password_field :password_confirmation,class: "form-control mb-3"
+
+          = u.submit "アカウントを作成する", class: "btn btn-info" 
   

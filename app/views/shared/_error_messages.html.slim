@@ -1,0 +1,7 @@
+- if @user.errors.any?
+  div#error_explanation
+    div.alert.alert-warning
+     | この入力フォームには#{@user.errors.count}個の間違いがあります。
+    ul
+      - @user.errors.full_messages.each do |message|
+        li = message

@@ -10,3 +10,7 @@ html
     == render "layouts/header"
     div.container
       == yield
+
+- if flash[:notice]
+  div.flash.text-success
+    =flash[:notice]
