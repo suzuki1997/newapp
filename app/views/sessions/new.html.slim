@@ -1,0 +1,14 @@
+div.row
+  div.col-md-6
+    = form_for(:session,url:login_path) do |s|
+      
+      = s.label :email,"Eメール"
+      = s.email_field :email,class: "form-control"
+      
+      = s.label :password,"パスワード"
+      = s.password_field :password,class: "form-control"
+      
+      = s.submit "ログインする", class: "btn btn-primary" 
+    
+      p
+      | まだ登録していませんか? #{link_to "新規登録する", signup_path}
