@@ -8,7 +8,14 @@ div.row
       = s.label :password,"パスワード"
       = s.password_field :password,class: "form-control"
       
+      div.form-check
+        = s.label :remember_me, class: "form-check-inline" do 
+          = s.check_box :remember_me
+          span Remember me on this computer
+      
       = s.submit "ログインする", class: "btn btn-primary" 
+      
+      
     
       p
       | まだ登録していませんか? #{link_to "新規登録する", signup_path}
