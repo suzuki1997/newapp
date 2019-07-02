@@ -32,7 +32,9 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
   
-
+  def current_user?(user)
+    user == current_user
+  end
   
   def log_out
     #現在のユーザーの永続セッションを消去する(ログアウトすると永続セッションが自動的に解除される)
@@ -47,6 +49,18 @@ module SessionsHelper
     #ユーザーidとrememberトークンを永続セッションにする
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
+  end
+  
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+  
+  def store_location
+    #GETリクエストを受け取った時に、リクエスト先のURLをsession[:forwarding_url]に保存する
+    if request.get?
+      session[:forwarding_url] = request.original_url
+    end
   end
   
 end
