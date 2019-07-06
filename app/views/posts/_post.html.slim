@@ -1,0 +1,16 @@
+li
+  span.user
+   = link_to(post.user.name, post.user)
+   p
+  span.content
+   = post.content
+   p
+  
+   = image_tag post.picture.url if post.picture?
+  
+  
+  span.timestamp
+    | Posted #{time_ago_in_words(post.created_at)} ago.
+    
+    - if current_user?(post.user)
+      = link_to "投稿削除",post,method: :delete,data: {confirm: "本当に消しますか？"}

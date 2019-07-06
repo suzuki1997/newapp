@@ -4,6 +4,12 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    #@postsはユーザーの投稿全てを表示する
+    @posts = @user.posts
+    @post = current_user.posts.build if logged_in?
+    #@postは現在のユーザーが作成した新規投稿を代入したもの。「shared/post_formにあるform_forを機能させるために変数を用意する」
+    #今回はusersコントローラ内にあるshowページで投稿を表示するから、@postをusersコントローラに設定する
+    #(usersコントローラのshowアクションに@postsを設定することによって、usersコントローラ内にあるshowページで投稿を作成できるようになる)
   end
   
   def new
@@ -49,15 +55,6 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,:picture)
-  end
-
-
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:notice] = "ログインしてください"
-      redirect_to login_url
-    end
   end
   
   def correct_user
