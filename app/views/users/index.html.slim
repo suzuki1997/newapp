@@ -5,7 +5,7 @@ h1.text-center.text-primary ユーザーの一覧
 ul.users.list-unstyled
   - @users.each do |user|
    li.mb-4.font-weight-bold.h3.text-info.float-left.mr-3
-     | ユーザー名：#{user.name}
+     = link_to "#{user.name}",user_path(user)
    p
    li.mb-4
       = image_tag(user.picture.url) if user.picture.present?

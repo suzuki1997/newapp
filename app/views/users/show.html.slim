@@ -4,21 +4,32 @@ div.row.font-weight-bold.mb-4
       = @user.name
       = image_tag(@user.picture.url) if @user.picture.present?
 
-div.row
-  div.col-6.h3.text-warning
-    li.nav-item.list-inline-item.m-2
-      = link_to "アカウント削除",user_path(@user),method: :delete,data: {confirm: "本当に消しますか？" }
+- if current_user == @user
+  div.row
+    div.col-6.h3.text-warning
+      li.nav-item.list-inline-item.m-2
+        = link_to "アカウント削除",user_path(@user),method: :delete,data: {confirm: "本当に消しますか？" }
+
+  div.row
+    div.col-6
+      - if @user.posts.any?
+        h3
+         | 投稿数 (#{@user.posts.count})
+       
+        ol.posts
+          == render @posts
+  
+    div.col-6
+      - if logged_in?
+        section.post_form
+          == render 'shared/post_form'
+
 
 div.row
   div.col-6
-    - if @user.posts.any?
-      h3
-       | 投稿数 (#{@user.posts.count})
-       
-      ol.posts
-        == render @posts
-  
-  div.col-6
     - if logged_in?
-      section.post_form
-        == render 'shared/post_form'
+      == render 'follow_form' 
+
+div.row
+  div.col-6
+    == render 'shared/stats'

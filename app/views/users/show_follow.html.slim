@@ -1,0 +1,20 @@
+div.row
+  aside.col-md-4
+    section.user_info
+      = image_tag(@user.picture.url) if @user.picture.present?
+      h2 = @user.name
+      span= link_to "プロフィールを詳しく見る", @user
+      
+      p
+      
+      span
+        b 投稿:
+        = @user.posts.count
+        
+  div.col-md-8
+    h3 = @title
+    - if @users.any?
+      ul.users.follow
+        == render @users
+      
+      = will_paginate

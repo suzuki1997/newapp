@@ -9,7 +9,7 @@ header
           div.collpse.navbar-collapse (id="a")
             ul.navbar-nav.list-inline
               li.nav-item.active.list-inline-item.m-2
-                = link_to "ホーム",root_path
+                = link_to "ホーム",user_path(current_user)
               li.nav-item.active.list-inline-item.m-2
                 = link_to "ユーザーの一覧",users_path
               li.nav-item.list-inline-item.m-2
