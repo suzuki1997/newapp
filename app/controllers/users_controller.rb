@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     #@postは現在のユーザーが作成した新規投稿を代入したもの。「shared/post_formにあるform_forを機能させるために変数を用意する」
     #今回はusersコントローラ内にあるshowページで投稿を表示するから、@postをusersコントローラに設定する
     #(usersコントローラのshowアクションに@postsを設定することによって、usersコントローラ内にあるshowページで投稿を作成できるようになる)
+    @like_user = User.find_by(id: params[:id])
+    @likes = Like.where(user_id: @like_user.id)
+  end
+  
+  def likes
   end
   
   def new
@@ -62,6 +67,7 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
   end
+  
   
   
   private

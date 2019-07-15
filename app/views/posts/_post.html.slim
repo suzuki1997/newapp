@@ -7,7 +7,11 @@ li
    p
   
    = image_tag post.picture.url if post.picture?
+  p
+ 
+  p
   
+  = link_to "投稿プランを詳しく見る","/posts/#{post.id}"
   
   span.timestamp
     | Posted #{time_ago_in_words(post.created_at)} ago.

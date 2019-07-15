@@ -1,0 +1,8 @@
+= @post.id
+
+- if Like.find_by(user_id: current_user.id, post_id: @post.id)
+  = link_to "/likes/#{@post.id}/destroy",{method: "post"}
+    span.fa.fa-heart.like-btn-unlike
+- else
+  = link_to "/likes/#{@post.id}/create",{method: "post"}
+    span.fa.fa-heart.like-btn
