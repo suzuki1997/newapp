@@ -34,7 +34,3 @@ div.row
   div.col-6
     == render 'shared/stats'
     
-div.row
-  div.col-6
-    - @likes.each do |like|
-      post = Post.find_by(id: like.post_id).content
