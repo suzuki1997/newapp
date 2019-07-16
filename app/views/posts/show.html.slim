@@ -1,4 +1,4 @@
-= @post.id
+= @post.content
 
 - if Like.find_by(user_id: current_user.id, post_id: @post.id)
   = link_to "/likes/#{@post.id}/destroy",{method: "post"}
