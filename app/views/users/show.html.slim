@@ -3,12 +3,15 @@ div.row.font-weight-bold.mb-4
     h1.float-left.mr-3
       = @user.name
       = image_tag(@user.picture.url) if @user.picture.present?
-
-- if current_user == @user
-  div.row
-    div.col-6.h3.text-warning
-      li.nav-item.list-inline-item.m-2
-        = link_to "アカウント削除",user_path(@user),method: :delete,data: {confirm: "本当に消しますか？" }
+      p
+      == render 'shared/stats'
+      - if logged_in?
+        == render 'follow_form'
+      - elsif current_user == @user
+        div.col-6
+          li.nav-item.list-inline-item.m-2.text-warning
+          = link_to "アカウント削除",user_path(@user),method: :delete,data: {confirm: "本当に消しますか？" }
+p
 
 div.row
   div.col-6
@@ -16,21 +19,11 @@ div.row
       h3
         | 投稿数 (#{@user.posts.count})
        
-      ol.posts
+      ul.posts
         == render @posts
   
   div.col-6
     - if logged_in?
       section.post_form
         == render 'shared/post_form'
-
-
-div.row
-  div.col-6
-    - if logged_in?
-      == render 'follow_form' 
-
-div.row
-  div.col-6
-    == render 'shared/stats'
     
