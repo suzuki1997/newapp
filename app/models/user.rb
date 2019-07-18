@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :email,presence: true, length: { maximum: 255 }, format: {with: VALID_EMAIL_REGEX},uniqueness: {case_sensitive: false }
   has_secure_password
   validates :password,presence: true,length: {minimum: 6},allow_nil: true
+  validates :picture,presence: true
   validate :picture_size
   
   #引数で渡されたものをハッシュ化する
