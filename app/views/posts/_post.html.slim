@@ -1,22 +1,14 @@
-li
-  span.user
-   = link_to(post.user.name, post.user)
-   p
-  span.content
-   = post.content
-   p
-  
-   = image_tag post.picture.url if post.picture?
-  p
- 
-  p
-  
-  = link_to "投稿プランを詳しく見る","/posts/#{post.id}"
-  
-  span.timestamp
-    | Posted #{time_ago_in_words(post.created_at)} ago.
-
-  p
-    - if current_user?(post.user)
-    p
-      = link_to "投稿削除",post,method: :delete,data: {confirm: "本当に消しますか？"}
+div.card.mb-3 style="width:240px"
+  div.card-body
+    h3.card-title 
+      = link_to(post.user.name, post.user)
+    p.card-text 
+      = post.content
+      = image_tag post.picture.url if post.picture?
+      p = link_to "投稿プランを詳しく見る","/posts/#{post.id}"
+      p
+        | Posted #{time_ago_in_words(post.created_at)} ago.
+      
+      p
+        - if current_user?(post.user)
+          = link_to "投稿削除",post,method: :delete,data: {confirm: "本当に消しますか？"}

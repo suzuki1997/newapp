@@ -2,12 +2,12 @@
 div.stats
   a.float-left href="#{following_user_path(@user)}" 
     strong#following
-    h3
+    h5
       = @user.following.count
       | フォロー
   
   a.float-left href="#{followers_user_path(@user)}" 
     strong#followers.stat
-    h3
+    h5
       = @user.followers.count
       | フォロワー

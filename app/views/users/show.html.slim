@@ -23,7 +23,7 @@ div.row
         == render @posts
   
   div.col-6
-    - if logged_in?
+    - if logged_in? && current_user == @user
       section.post_form
         == render 'shared/post_form'
     

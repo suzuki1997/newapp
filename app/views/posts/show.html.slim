@@ -1,4 +1,12 @@
-= @post.content
+div.card.mb-3 style="width:240px"
+  div.card-body
+    h3.card-title 
+      = link_to(@post.user.name, @post.user)
+    p.card-text 
+      = @post.content
+      = image_tag @post.picture.url if @post.picture?
+
+p
 
 - if Like.find_by(user_id: current_user.id, post_id: @post.id)
   = link_to "/likes/#{@post.id}/destroy",{method: "post"}
