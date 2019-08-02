@@ -22,6 +22,7 @@ gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem "font-awesome-rails"
 gem "ransack"
+gem "kaminari"
 
 
 group :development, :test do

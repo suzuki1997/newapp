@@ -15,3 +15,7 @@ ul.users.list-unstyled
    p
    li.mb-4
       = image_tag(user.picture.url) if user.picture.present?
+
+.mb-4
+  = paginate @users
+  = page_entries_info @users
