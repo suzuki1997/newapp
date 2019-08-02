@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   #applicationコントローラーでSessionsヘルパーを読み込む事で、どこでもSessionsヘルパーを使えるようになる
   include SessionsHelper
   
@@ -14,4 +15,6 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+ 
 end

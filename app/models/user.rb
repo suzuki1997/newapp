@@ -68,7 +68,15 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+  #ransack_attributesには、検索対象として許可するカラムを指定
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name created_at]
+  end
   
+  #ransack_assosiationsには、検索条件に含める関連(has_manyなど)を指定
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
   
 end
 
